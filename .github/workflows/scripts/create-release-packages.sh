@@ -221,6 +221,9 @@ build_variant() {
     bob)
       mkdir -p "$base_dir/.bob/commands"
       generate_commands bob md "\$ARGUMENTS" "$base_dir/.bob/commands" "$script" ;;
+    kiro-cli)
+      mkdir -p "$base_dir/.kiro/commands"
+      generate_commands kiro-cli md "\$ARGUMENTS" "$base_dir/.kiro/commands" "$script" ;;
     generic)
       mkdir -p "$base_dir/.speckit/commands"
       generate_commands generic md "\$ARGUMENTS" "$base_dir/.speckit/commands" "$script" ;;
@@ -230,7 +233,7 @@ build_variant() {
 }
 
 # Determine agent list
-ALL_AGENTS=(claude gemini copilot cursor-agent qwen opencode windsurf codex kilocode auggie roo codebuddy amp shai q agy bob qodercli generic)
+ALL_AGENTS=(claude gemini copilot cursor-agent qwen opencode windsurf codex kilocode auggie roo codebuddy amp shai q agy bob qodercli kiro-cli generic)
 ALL_SCRIPTS=(sh ps)
 
 norm_list() {

@@ -76,6 +76,7 @@ SHAI_FILE="$REPO_ROOT/SHAI.md"
 Q_FILE="$REPO_ROOT/AGENTS.md"
 AGY_FILE="$REPO_ROOT/.agent/rules/specify-rules.md"
 BOB_FILE="$REPO_ROOT/AGENTS.md"
+KIRO_FILE="$REPO_ROOT/.kiro/rules/specify-rules.md"
 
 # Template file
 TEMPLATE_FILE="$REPO_ROOT/.specify/templates/agent-file-template.md"
@@ -657,12 +658,15 @@ update_specific_agent() {
         bob)
             update_agent_file "$BOB_FILE" "IBM Bob"
             ;;
+        kiro-cli)
+            update_agent_file "$KIRO_FILE" "Kiro CLI"
+            ;;
         generic)
             log_info "Generic agent: no predefined context file. Use the agent-specific update script for your agent."
             ;;
         *)
             log_error "Unknown agent type '$agent_type'"
-            log_error "Expected: claude|gemini|copilot|cursor-agent|qwen|opencode|codex|windsurf|kilocode|auggie|roo|codebuddy|amp|shai|q|agy|bob|qodercli|generic"
+            log_error "Expected: claude|gemini|copilot|cursor-agent|qwen|opencode|codex|windsurf|kilocode|auggie|roo|codebuddy|amp|shai|q|agy|bob|qodercli|kiro-cli|generic"
             exit 1
             ;;
     esac
@@ -748,6 +752,11 @@ update_all_existing_agents() {
     fi
     if [[ -f "$BOB_FILE" ]]; then
         update_agent_file "$BOB_FILE" "IBM Bob"
+        found_agent=true
+    fi
+    
+    if [[ -f "$KIRO_FILE" ]]; then
+        update_agent_file "$KIRO_FILE" "Kiro CLI"
         found_agent=true
     fi
     
